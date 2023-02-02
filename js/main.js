@@ -111,10 +111,13 @@ function generateGrid(grid, dimensionGrid) {
                         gameOver = true;
                         selectAllBombs(bombList, "square-bomb");
                     } else {
-                        // console.log(numberSquare);
                         this.classList.toggle("active");
                         points++;
-                        userPoint("game-result", "Il tuo punteggio è " + points)
+                        userPoint("game-result", "Il tuo punteggio è " + points);
+                        if (points == (parseInt(dimensionGrid - 16))) {
+                            userPoint("game-result", "COMPLIMENTI, HAI VINTO!")
+                            gameOver = true;
+                        }
                     }
                 }
             }
