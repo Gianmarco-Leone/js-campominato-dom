@@ -111,7 +111,7 @@ function generateGrid(grid, dimensionGrid) {
                         gameOver = true;
                         selectAllBombs(bombList, "square-bomb");
                     } else {
-                        this.classList.toggle("active");
+                        this.classList.add("active");
                         points++;
                         userPoint("game-result", "Il tuo punteggio è " + points);
                         if (points == (parseInt(dimensionGrid - 16))) {
@@ -120,7 +120,8 @@ function generateGrid(grid, dimensionGrid) {
                         }
                     }
                 }
-            }
+            },
+            { once: true }
         );
         // Aggiungo elemento square all'elemento grid
         grid.append(squareEl);
