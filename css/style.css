@@ -56,6 +56,11 @@ main {
     color: #FFF;
 }
 
+.square-bomb {
+    background-color: red;
+    color: #FFF;
+}
+
 /************
 FOOTER
 ************/
