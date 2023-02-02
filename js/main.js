@@ -86,6 +86,11 @@ playGame.addEventListener(
 function generateGrid(grid, dimensionGrid) {
     // Resettare grid in condizione di start
     grid.innerHTML = "";
+
+    let gameOver = false;
+
+    let points = 0;
+
     // Creo il ciclo che andrà a generare n div con classe square
     for (let i = 0; i < dimensionGrid; i++) {
         const numberSquare = i + 1;
@@ -106,11 +111,17 @@ function generateGrid(grid, dimensionGrid) {
         squareEl.addEventListener(
             "click",
             function () {
-                console.log(numberSquare);
-                if (bombList.includes(numberSquare)) {
-                    this.classList.add("square-bomb");
-                } else {
-                    this.classList.toggle("active");
+                if (!gameOver) {
+                    if (bombList.includes(numberSquare)) {
+                        this.classList.add("square-bomb");
+                        userPoint("game-result", "Hai calpestato una bomba, hai totalizzato " + points + " punti.")
+                        gameOver = true;
+                    } else {
+                        // console.log(numberSquare);
+                        this.classList.toggle("active");
+                        points++;
+                        userPoint("game-result", "Il tuo punteggio è " + points)
+                    }
                 }
             }
         );
@@ -129,4 +140,15 @@ function generateGrid(grid, dimensionGrid) {
 function generateRandomNumber(minimo, massimo) {
     let randomNumber = Math.floor(Math.random() * (massimo - minimo + 1)) + minimo;
     return randomNumber;
+}
+
+/**
+ * funzione che scrivo in un elemento html una stringa
+ * 
+ * @param {HTMLElement} idElement elemento da recuperare 
+ * @param {strg} strg frase da scrivere nell'elemento  
+ */
+
+function userPoint(idElement, strg) {
+    document.getElementById(idElement).innerHTML = strg;
 }
