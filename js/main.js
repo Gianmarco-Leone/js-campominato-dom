@@ -28,8 +28,9 @@ let dimensionEasyGrid = 100;
 
 // Genero array che contiene bombe
 const bombList = [];
+let numberBomb;
 while (bombList.length < 16) {
-    let numberBomb = generateRandomNumber(1, dimensionEasyGrid);
+    numberBomb = generateRandomNumber(1, dimensionEasyGrid);
     if (!bombList.includes(numberBomb)) {
         bombList.push(numberBomb);
     }
@@ -105,8 +106,12 @@ function generateGrid(grid, dimensionGrid) {
         squareEl.addEventListener(
             "click",
             function () {
-                this.classList.toggle("active");
                 console.log(numberSquare);
+                if (bombList.includes(numberSquare)) {
+                    this.classList.add("square-bomb");
+                } else {
+                    this.classList.toggle("active");
+                }
             }
         );
         // Aggiungo elemento square all'elemento grid
