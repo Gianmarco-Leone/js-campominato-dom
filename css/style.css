@@ -1,0 +1,65 @@
+/*********
+HEADER
+*********/
+header .row {
+    height: 80px;
+}
+
+.col-auto button {
+    border: 1px solid #999;
+    padding: 0 2rem;
+    margin: 0 1.5rem;
+    font-weight: 600;
+}
+
+/**********
+MAIN
+***********/
+main {
+    background-color: #7FFFD4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#grid {
+    display: flex;
+    flex-wrap: wrap;
+    border: 1px solid #000;
+    height: 800px;
+    width: 800px;
+}
+
+.square {
+    width: calc(100% / 10);
+    height: calc(100% / 10);
+    border: 1px solid #000;
+    cursor: crosshair;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.square-medium {
+    width: calc(100% / 9);
+    height: calc(100% / 9);
+}
+
+.square-hard {
+    width: calc(100% / 7);
+    height: calc(100% / 7);
+}
+
+.square.active {
+    background-color: lightblue;
+    color: #FFF;
+}
+
+/************
+FOOTER
+************/
+footer {
+    height: 50px;
+    line-height: 50px;
+}
