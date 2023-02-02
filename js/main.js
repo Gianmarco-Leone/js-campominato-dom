@@ -116,6 +116,7 @@ function generateGrid(grid, dimensionGrid) {
                         this.classList.add("square-bomb");
                         userPoint("game-result", "Hai calpestato una bomba, hai totalizzato " + points + " punti.")
                         gameOver = true;
+                        selectAllBombs(bombList, "square-bomb");
                     } else {
                         // console.log(numberSquare);
                         this.classList.toggle("active");
@@ -151,4 +152,20 @@ function generateRandomNumber(minimo, massimo) {
 
 function userPoint(idElement, strg) {
     document.getElementById(idElement).innerHTML = strg;
+}
+
+/**
+ * funzione che seleziona tutti gli elementi bomba dalla lista bombe individuati dalla classe css
+ * 
+ * @param {Array} bombList lista dalla quale recuperare elementi bombe 
+ * @param {strg} addClass selettore classe css necessario per richiamare elementi  
+ */
+
+function selectAllBombs(bombList, addClass) {
+    const allSquare = grid.children;
+    for (let i = 0; i < allSquare.length; i++) {
+        if (bombList.includes(parseInt(allSquare[i].innerHTML))) {
+            allSquare[i].classList.add(addClass)
+        }
+    }
 }
