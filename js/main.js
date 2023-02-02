@@ -21,21 +21,11 @@
 
 // Recupero tag button dall'HTML
 const playGame = document.getElementById("play_game");
-// Imposto variabili dimensioni griglia a seconda della difficolà
+// Imposto variabili globali
 let dimensionHardGrid = 49;
 let dimensionMediumGrid = 81;
 let dimensionEasyGrid = 100;
-
-// Genero array che contiene bombe
-const bombList = [];
-let numberBomb;
-while (bombList.length < 16) {
-    numberBomb = generateRandomNumber(1, dimensionEasyGrid);
-    if (!bombList.includes(numberBomb)) {
-        bombList.push(numberBomb);
-    }
-}
-console.log(bombList);
+let bombList;
 
 /********************************
  *                              *
@@ -59,12 +49,15 @@ playGame.addEventListener(
         if (gameDifficult == "medium") {
             dimensionGridEl = dimensionMediumGrid;
             generateGrid(gridEl, dimensionGridEl);
+            generateBombList(dimensionMediumGrid);
         } else if (gameDifficult == "hard") {
             dimensionGridEl = dimensionHardGrid;
             generateGrid(gridEl, dimensionGridEl);
+            generateBombList(dimensionHardGrid);
         } else {
             dimensionGridEl = dimensionEasyGrid;
             generateGrid(gridEl, dimensionGridEl);
+            generateBombList(dimensionEasyGrid);
         }
 
     }
@@ -131,6 +124,7 @@ function generateGrid(grid, dimensionGrid) {
     }
 }
 
+
 /**
  * funzione che genera un numero random dati i valori del range minimo e del range massimom
  * 
@@ -143,8 +137,30 @@ function generateRandomNumber(minimo, massimo) {
     return randomNumber;
 }
 
+
 /**
- * funzione che scrivo in un elemento html una stringa
+ * funzione che genera la lista di tutte le bombe a seconda della dimensione della griglia per identificare il range massimo
+ * 
+ * @param {int} dimensionGrid numero che indica la dimensione totale della griglia e rappresenta il range massimo della lista bombe di gioco
+ * @returns {Array} lista bombe 
+ */
+
+function generateBombList(dimensionGrid) {
+    bombList = [];
+    let numberBomb;
+    while (bombList.length < 16) {
+        numberBomb = generateRandomNumber(1, dimensionGrid);
+        if (!bombList.includes(numberBomb)) {
+            bombList.push(numberBomb);
+        }
+    }
+    console.log(bombList);
+    return bombList;
+}
+
+
+/**
+ * funzione che scrive in un elemento html una stringa
  * 
  * @param {HTMLElement} idElement elemento da recuperare 
  * @param {strg} strg frase da scrivere nell'elemento  
@@ -153,6 +169,7 @@ function generateRandomNumber(minimo, massimo) {
 function userPoint(idElement, strg) {
     document.getElementById(idElement).innerHTML = strg;
 }
+
 
 /**
  * funzione che seleziona tutti gli elementi bomba dalla lista bombe individuati dalla classe css
