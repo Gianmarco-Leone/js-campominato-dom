@@ -16,7 +16,9 @@ header .row {
 MAIN
 ***********/
 main {
-    background-color: #7FFFD4;
+    background-image: url(../img/bomb_4x.webp);
+    background-size: cover;
+    background-repeat: no-repeat;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -27,8 +29,8 @@ main {
     display: flex;
     flex-wrap: wrap;
     border: 1px solid #000;
-    height: 800px;
-    width: 800px;
+    height: 600px;
+    width: 600px;
 }
 
 .square {
@@ -53,7 +55,7 @@ main {
 }
 
 .square.active {
-    background-color: lightblue;
+    background-color: #a88d6a;
     color: #FFF;
 }
 
